@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Huellitas Nic | Rescate, búsqueda y adopción de mascotas en Nicaragua</title>
+<meta name="description" content="Plataforma para el rescate, búsqueda y adopción de mascotas en Nicaragua.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<div id="hn-root">
+
+<header><div class="logo"><i class="ic ic-paw"></i> <b>Huellitas</b> Nic</div>
+<nav><button class="nv on" data-p="inicio">Inicio</button><button class="nv" data-p="buscar">Buscar</button><button class="nv" data-p="mapa">Mapa</button><button class="nv" data-p="adoptar">Adoptar</button><button class="nv" data-p="reporte">Reporte</button><button class="nv" data-p="blog">Blog</button><button class="nv" data-p="ia">IA</button></nav></header>
+<button class="tg" id="hn-tg"><i class="ic ic-moon"></i></button>
+
+<main>
+<section id="inicio" class="pg on">
+ <div class="hero"><img class="hbg" src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1600&q=85" alt=""><h1>Encuentra, Ayuda y Adopta</h1><p>Plataforma para el rescate, búsqueda y adopción de mascotas en Nicaragua.</p><div><button class="pri" data-go="login">Inicio Sesión</button><button class="sec" data-go="registro">Crear Cuenta</button></div></div>
+ <div class="g4" style="margin-top:26px"><div class="card feat"><span><i class="ic ic-paw"></i></span>Mascotas Perdidas y Encontradas</div><div class="card feat"><span><i class="ic ic-users"></i></span>Conecta con la Comunidad</div><div class="card feat"><span><i class="ic ic-shield"></i></span>Seguro y Confiable</div><div class="card feat"><span><i class="ic ic-pin"></i></span>Ubicación en Mapa Interactivo</div></div>
+ <div class="g2" style="margin-top:34px;align-items:center"><div><h2 class="h2" style="margin-top:0"><i class="ic ic-paw"></i> Sobre Huellitas Nic</h2><p>Conectamos a dueños, rescatistas y familias para que cada mascota vuelva a casa o encuentre un hogar responsable en toda Nicaragua.</p></div><img class="pet-img" src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=900&q=80" alt="Perro y gato"></div>
+ <h2 class="h2"><i class="ic ic-paw"></i> Impacto y Estadísticas</h2>
+ <div class="g3"><div class="st"><b data-n="860">0</b>Mascotas perdidas</div><div class="st"><b data-n="860">0</b>Mascotas encontradas</div><div class="st"><b data-n="700">0</b>Mascotas en adopción</div></div>
+ <h2 class="h2"><i class="ic ic-paw"></i> Publicaciones Recientes</h2><div id="recent" class="g4"></div>
+ <h2 class="h2"><i class="ic ic-paw"></i> ¿Cómo Funciona?</h2>
+ <div class="g3"><div class="card stp"><span><i class="ic ic-search"></i></span><div><b>1. Busca</b><p class="sm">Explora las mascotas perdidas o encontradas.</p></div></div><div class="card stp"><span><i class="ic ic-chat"></i></span><div><b>2. Contacta</b><p class="sm">Comunícate con el publicador o dueño de la publicación.</p></div></div><div class="card stp"><span><i class="ic ic-heart"></i></span><div><b>3. Reúne</b><p class="sm">Ayuda a las mascotas a regresar con sus dueños o encontrar un nuevo hogar.</p></div></div></div>
+ <div class="pn" style="margin-top:26px;text-align:center"><h3>Inteligencia artificial en Huellitas Nic</h3><p class="sm">Conoce cómo la IA puede ayudar a encontrar mascotas y a lograr adopciones responsables.</p><button class="pri" data-go="ia">Leer el ensayo</button></div>
+ <p style="text-align:center"><button class="pri" data-go="buscar">Siguiente</button></p>
+</section>
+
+<section id="buscar" class="pg">
+ <div class="hero"><img class="hbg" src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1600&q=85" alt=""><h1>Cada huellita tiene un camino de vuelta a casa</h1></div>
+ <h2 class="h2"><i class="ic ic-paw"></i> Buscar Mascotas</h2>
+ <div class="bar"><input id="q" placeholder="Buscar por raza, tipo de mascota, ubicación..."><button class="sec" id="qb">Buscar</button><button class="pri" id="aiopen"><i class="ic ic-camera"></i> Buscar por foto con IA</button></div>
+ <div class="ai" id="aibox" style="display:none"><h3><i class="ic ic-paw"></i> Buscador por Foto con IA</h3>
+  <img id="pv" class="pv" style="display:none" alt="Vista previa">
+  <label class="pri" style="display:inline-block;cursor:pointer"><i class="ic ic-camera"></i> Subir imagen de tu mascota<input id="ph" type="file" accept="image/*" style="display:none"></label>
+  <button class="pri" id="an"><i class="ic ic-spark"></i> Analizar con IA</button>
+  <div id="ares"></div><p class="sm">Demo: muestra coincidencias de ejemplo. Una IA real requiere conectar una API de reconocimiento visual.</p></div>
+ <h2 class="h2"><i class="ic ic-paw"></i> Filtros</h2><div class="fl" data-f="b"></div>
+ <div id="blist" class="g4" style="margin-top:18px"></div>
+</section>
+
+<section id="mapa" class="pg">
+ <div class="hero"><img class="hbg" src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1600&q=85" alt=""><h1>Encuentra la ayuda más cercana para cada huellita</h1></div>
+ <h2 class="h2"><i class="ic ic-paw"></i> Mapa Interactivo</h2><p class="sub">Explora los casos de mascotas y servicios cerca de ti.</p>
+ <div class="kinds" id="mk"><button class="on" data-k="all"><i class="ic ic-globe"></i> Todas</button><button data-k="Perdido"><i class="dot Perdido"></i> Perdidas</button><button data-k="Encontrado"><i class="dot Encontrado"></i> Encontradas</button><button data-k="Adopción"><i class="dot Adopción"></i> Adoptar</button></div>
+ <div class="map" id="map"><div id="mapa-leaflet"></div><div class="leg"><i class="dot Perdido"></i> Perdidos<br><i class="dot Encontrado"></i> Encontrados<br><i class="dot Adopción"></i> En adopción</div><div class="cnt" id="mc"></div></div>
+ <h2 class="h2"><i class="ic ic-paw"></i> Veterinarias de Emergencia y Refugios</h2>
+ <div class="g4"><div class="card cb"><b><i class="ic ic-cross"></i> Vet Francisco Salazar</b><p class="sm"><i class="ic ic-phone"></i> 2255-0811 · Altamira, Managua</p></div><div class="card cb"><b><i class="ic ic-cross"></i> Vet Milagro de Dios</b><p class="sm"><i class="ic ic-phone"></i> 2278-7351 · Primero de Mayo, Managua</p></div><div class="card cb"><b><i class="ic ic-home"></i> Refugio Huellitas Nic</b><p class="sm"><i class="ic ic-phone"></i> 2550-7101 · Altamira, Managua</p></div><div class="card cb"><b><i class="ic ic-paw"></i> Refugio López</b><p class="sm"><i class="ic ic-phone"></i> 1225-4331 · Américas, Managua</p></div></div>
+ <p style="display:flex;justify-content:space-between;margin-top:18px"><button class="sec" data-go="buscar">Volver</button><button class="pri" data-go="adoptar">Siguiente</button></p>
+</section>
+
+<section id="adoptar" class="pg">
+ <div class="hero"><img class="hbg" src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1600&q=85" alt=""><h1>Tu nuevo mejor amigo te está esperando.</h1></div>
+ <h2 class="h2"><i class="ic ic-paw"></i> Filtros</h2><div class="fl" data-f="a"></div>
+ <div id="alist" class="g4" style="margin-top:18px"></div>
+</section>
+
+<section id="reporte" class="pg">
+ <div class="hero"><img class="hbg" src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1600&q=85" alt=""><h1>Registra los datos de tu mascota para facilitar su identificación.</h1></div>
+ <div class="g2">
+  <div class="pn" style="text-align:center"><h3>Vista previa de la imagen</h3><img id="rimg" src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=700&q=80" style="width:100%;height:320px;object-fit:cover;border-radius:12px" alt="Vista previa">
+  <label class="pri" style="cursor:pointer;margin-top:12px;text-align:center"><i class="ic ic-camera"></i> Seleccionar imagen de la mascota<input id="rin" type="file" accept="image/*" style="display:none"></label></div>
+  <form id="rf" class="pn"><h3>Tipo de publicación</h3><div class="kinds" id="rk"><button type="button" class="on" data-k="Perdido"><i class="dot Perdido"></i> Perdido</button><button type="button" data-k="Encontrado"><i class="dot Encontrado"></i> Encontrado</button><button type="button" data-k="Adopción"><i class="dot Adopción"></i> En adopción</button></div>
+  <label>Nombre de su mascota</label><input required placeholder="Escriba el nombre">
+  <label>Especie</label><select id="esp" required><option value="">Seleccione una especie</option><option>Perro</option><option>Gato</option><option>Otro</option></select>
+  <label>Raza</label><select id="raz" required><option value="">Seleccione una raza</option></select>
+  <label>Ubicación donde se vio por última vez</label><select required><option value="">Seleccione una ubicación</option><option>Managua</option><option>Masaya</option><option>Granada</option><option>León</option><option>Estelí</option></select>
+  <label>Sexo</label><select><option>Macho</option><option>Hembra</option><option>No sé</option></select>
+  <label>Teléfono de contacto</label><input required inputmode="tel" placeholder="Ej. 8888-8888">
+  <label>Descripción (opcional)</label><textarea placeholder="Color, tamaño, collar y rasgos visibles"></textarea>
+  <button class="pri" style="width:100%;margin-top:16px">Subir Reporte</button></form></div>
+</section>
+
+<section id="blog" class="pg">
+ <div class="hero"><img class="hbg" src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1600&q=85" alt=""><h1>Aprende, inspírate y descubre cómo darle la mejor vida a tu mascota</h1></div>
+ <div class="g2" style="align-items:start"><div><h2 class="h2" style="margin-top:0">Preguntas frecuentes</h2><div id="faq"></div></div><img class="pet-img" style="height:420px;position:sticky;top:90px" src="https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=900&q=80" alt="Mascota feliz"></div>
+</section>
+
+<section id="login" class="pg"><div class="hero"><img class="hbg" src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1600&q=85" alt=""><h1>Inicio de sesión</h1><p>Inicia sesión para gestionar tus reportes activos y conectar con la comunidad.</p></div>
+ <div class="g2"><form class="pn" id="lf"><h2>Bienvenido a Huellitas Nic</h2><label><i class="ic ic-mail"></i> Correo</label><input type="email" required placeholder="Escriba su correo"><label><i class="ic ic-lock"></i> Contraseña</label><input type="password" required placeholder="Escriba su contraseña"><button class="pri" style="width:100%;margin-top:16px">Iniciar sesión</button><p class="sm">¿No tienes cuenta? <a href="#" data-go="registro" style="color:inherit"><b>Crear cuenta</b></a></p></form>
+ <div class="pn"><img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80" style="width:100%;height:320px;object-fit:cover;border-radius:12px" alt="Perro y gato"></div></div></section>
+
+<section id="registro" class="pg"><div class="hero"><img class="hbg" src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1600&q=85" alt=""><h1>Crear Cuenta</h1><p>Crea tu cuenta y sé parte del cambio en Nicaragua.</p></div>
+ <div class="g2"><form class="pn" id="cf"><h2><i class="ic ic-paw"></i> Crear Cuenta</h2><p class="sub">Únete a nuestra comunidad para ayudar a más mascotas.</p><label><i class="ic ic-users"></i> Nombre completo</label><input required placeholder="Escriba su nombre completo"><label><i class="ic ic-mail"></i> Correo electrónico</label><input type="email" required placeholder="Escriba su correo electrónico"><label><i class="ic ic-lock"></i> Contraseña</label><input id="p1" type="password" minlength="6" required placeholder="Escriba su contraseña"><label><i class="ic ic-lock"></i> Confirmar contraseña</label><input id="p2" type="password" minlength="6" required placeholder="Confirme la contraseña"><button class="pri" style="width:100%;margin-top:16px">Crear Cuenta</button></form>
+ <div class="pn"><img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80" style="width:100%;height:360px;object-fit:cover;border-radius:12px" alt="Mascotas"></div></div></section>
+<section id="cuenta" class="pg"><div class="hero"><img class="hbg" src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1600&q=85" alt=""><h1>Mi cuenta</h1><p>Gestiona tus reportes y solicitudes.</p></div><div id="cuenta-body"></div></section>
+<section id="ia" class="pg">
+ <div class="hero"><img class="hbg" src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1600&q=85" alt=""><h1>Inteligencia artificial al servicio de las mascotas</h1><p>Usos y aportes de la IA en la búsqueda de mascotas desaparecidas y la adopción responsable.</p></div>
+ <div class="pn ia-intro"><h2 style="margin-top:0">Sobre este apartado</h2><p>Este apartado resume el ensayo académico del proyecto <b>Huellitas Nic</b>. Fue generado con apoyo de inteligencia artificial y revisado, ajustado y enriquecido por el grupo. Las funciones de IA que se describen son <b>propuestas de implementación</b>: la plataforma actual usa programación tradicional (reportes, filtros, mapa y cuentas) y muestra el buscador por foto solo como demostración.</p>
+ <a class="pri" href="docs/Ensayo_IA_Huellitas_Nic.docx" download>Descargar el ensayo completo (Word)</a></div>
+ <h2 class="h2">Temas principales</h2>
+ <div class="g4 ia-cards">
+  <button class="card cb ia-go" data-iago="ia-s21"><b class="ia-t" style="display:block;margin-bottom:10px">Visión por computador</b><span class="ia-d" style="display:block">Redes neuronales, rostro y huellas nasales para reconocer mascotas.</span></button>
+  <button class="card cb ia-go" data-iago="ia-s22"><b class="ia-t" style="display:block;margin-bottom:10px">Adopción inteligente</b><span class="ia-d" style="display:block">Algoritmo de compatibilidad entre adoptante y mascota, con demostración.</span></button>
+  <button class="card cb ia-go" data-iago="ia-s23"><b class="ia-t" style="display:block;margin-bottom:10px">Mapas y SIG</b><span class="ia-d" style="display:block">Leaflet.js, radios de búsqueda y zonas de incidencia.</span></button>
+  <button class="card cb ia-go" data-iago="ia-s24"><b class="ia-t" style="display:block;margin-bottom:10px">Retos y ética</b><span class="ia-d" style="display:block">Datos, precisión, privacidad, sesgos y sostenibilidad.</span></button>
+ </div>
+ <div class="ens-wrap">
+<h2 class="h2 ens-grp"><span class="gn">1</span>Introducción</h2><p class="ens-lead">El problema que queremos resolver y nuestra propuesta.</p>
+<details class="ens" id="ia-s1" open><summary>Contexto, problema y propuesta</summary><div class="eb"><p>Perros y gatos forman parte de la vida familiar, pero el extravío, el abandono y la dificultad para encontrarles un hogar siguen siendo problemas reales. Hoy la búsqueda depende de publicaciones dispersas en redes sociales que se pierden con el tiempo, así que una familia puede buscar durante días a un animal que otra persona ya encontró; además, en Nicaragua no existen estadísticas nacionales verificadas, aunque sí una ley de protección animal (Ley 747). La inteligencia artificial, capaz de reconocer patrones en fotografías, clasificar reportes y recomendar adopciones, puede ayudar a resolver esa dispersión, siempre como apoyo al criterio humano. Huellitas Nic nace como una plataforma que centraliza las mascotas perdidas, encontradas y en adopción, y propone módulos de IA para comparar fotos y sugerir hogares compatibles.</p></div></details>
+<h2 class="h2 ens-grp"><span class="gn">2</span>Desarrollo</h2><p class="ens-lead">Cuatro aportes de la IA y los retos que implican.</p>
+<details class="ens" id="ia-s21"><summary>2.1. Visión por computador y reconocimiento de mascotas</summary><div class="eb"><p>La visión por computador permite comparar la foto de una mascota perdida con las de los animales encontrados, en lugar de revisar publicaciones una por una. Las redes neuronales convolucionales aprenden a reconocer desde bordes y texturas hasta rasgos complejos, y los convierten en representaciones numéricas que se comparan por similitud. Para distinguir a un individuo, y no solo su raza, se pueden usar rasgos del rostro, como las manchas y la forma del hocico, o el patrón de la nariz del perro, que estudios como los de Choi et al. (2021) y Chan et al. (2024) describen como único y estable. Sin embargo, estas técnicas necesitan pruebas con fotos reales y no deben confirmar una identidad por sí solas: sus resultados son una lista de candidatos que una persona revisa.</p></div></details>
+<details class="ens" id="ia-s22"><summary>2.2. Coincidencia inteligente para la adopción responsable</summary><div class="eb"><p>Una adopción responsable depende de que el animal y el hogar sean compatibles, no solo de la apariencia o de la urgencia por encontrar casa. Un algoritmo de puntuación ponderada, C(a,m) = Σ wᵢ · sᵢ(a,m), compara criterios como el tiempo disponible, la experiencia, la vivienda, la convivencia con niños y el presupuesto, dando a cada uno un peso según su importancia. El resultado es una guía orientativa: los requisitos esenciales para el bienestar animal se evalúan aparte y no se compensan con puntos en otros criterios, la recomendación debe poder explicarse y la decisión final la toman personas. Con suficientes datos legítimos, más adelante podría mejorarse con aprendizaje automático. Puedes probarlo en la demostración de abajo.</p>
+<div id="ia-calc" class="calc"></div></div></details>
+<details class="ens" id="ia-s23"><summary>2.3. Mapas interactivos y sistemas de información geográfica</summary><div class="eb"><p>La ubicación orienta la búsqueda: saber dónde y cuándo se vio un animal ayuda a coordinar a la comunidad. Con Leaflet.js, Huellitas Nic muestra marcadores distintos para las mascotas perdidas, encontradas y en adopción, y puede dibujar un radio de búsqueda alrededor del último avistamiento; ese radio no es una frontera, porque lo que recorre un animal depende de su especie, su tamaño y el tiempo transcurrido. La IA puede combinar la distancia, la fecha y la similitud de las fotos para priorizar posibles coincidencias, y con muchos registros permite mapas de zonas con más reportes que orienten campañas y voluntarios. Esos mapas se interpretan con cautela, pues más reportes pueden reflejar más acceso a internet y no necesariamente más casos.</p></div></details>
+<details class="ens" id="ia-s24"><summary>2.4. Retos técnicos, éticos y límites de la inteligencia artificial</summary><div class="eb"><p>Incorporar IA al rescate animal exige atender retos técnicos y éticos desde el diseño. Los modelos necesitan datos de calidad y representativos de Nicaragua, y deben medirse con pruebas independientes que cuenten los falsos positivos (coincidencias incorrectas) y los falsos negativos (coincidencias perdidas). Los reportes contienen datos personales, regulados por la Ley 787, por lo que se requiere cifrado, control de acceso y ubicaciones aproximadas para el público. También hay que evitar sesgos que favorezcan a mascotas jóvenes o de raza, explicar las recomendaciones y mantener la supervisión humana, siguiendo guías como el marco de riesgos del NIST (Tabassi, 2023). Por último, el proyecto debe ser sostenible: empezar con funciones básicas y modelos ya entrenados, y apoyarse en veterinarios, refugios y voluntarios.</p></div></details>
+<h2 class="h2 ens-grp"><span class="gn">3</span>Conclusiones</h2><p class="ens-lead">Lo más importante que deja este análisis.</p>
+<details class="ens" id="ia-s3" open><summary>Ideas clave y recomendaciones</summary><div class="eb"><p>La inteligencia artificial puede fortalecer la búsqueda de mascotas y la adopción responsable al organizar información, comparar fotos y orientar decisiones, siempre como apoyo y nunca como reemplazo del criterio humano. Por eso Huellitas Nic debe avanzar por etapas y medir su éxito por resultados reales, no por la sofisticación de sus algoritmos.</p><div class="keys"><div><b>Etapa 1 · Centralizar</b><span>Reunir los reportes en un solo lugar y usar mapas interactivos.</span></div><div><b>Etapa 2 · Comparar y recomendar</b><span>Sumar comparación de fotos y adopciones compatibles, con pruebas, privacidad y supervisión humana.</span></div><div><b>Meta · Medir resultados</b><span>Coincidencias verificadas, tiempo de recuperación y adopciones completadas.</span></div></div><p>La tecnología no reemplaza la empatía ni el compromiso comunitario: los amplía.</p></div></details>
+<h2 class="h2 ens-grp"><span class="gn">4</span>Bibliografía</h2><p class="ens-lead">Fuentes en las que se apoya el ensayo, ordenadas por tema.</p>
+<details class="ens" id="ia-s4"><summary>Fuentes consultadas (12)</summary><div class="eb"><h4 class="bib-t">Leyes de Nicaragua</h4><ul class="ia-bib"><li>Asamblea Nacional de la República de Nicaragua. (2011). Ley n.º 747: Ley para la protección y el bienestar de los animales domésticos y animales silvestres domesticados. La Gaceta, Diario Oficial, n.º 96. <a target="_blank" rel="noopener" href="https://legislacion.asamblea.gob.ni/gacetas/2011/5/g96.pdf"><u>https://legislacion.asamblea.gob.ni/gacetas/2011/5/g96.pdf</u></a></li><li>Asamblea Nacional de la República de Nicaragua. (2012). Ley n.º 787: Ley de protección de datos personales. La Gaceta, Diario Oficial, n.º 61. <a target="_blank" rel="noopener" href="https://www.oas.org/es/sla/ddi/docs/N3%20Ley%20de%20Proteccion%20de%20Datos%20Personales.pdf"><u>https://www.oas.org/es/sla/ddi/docs/N3%20Ley%20de%20Proteccion%20de%20Datos%20Personales.pdf</u></a></li></ul><h4 class="bib-t">Identificación animal e inteligencia artificial</h4><ul class="ia-bib"><li>Chan, Y.-K., Lin, C.-H., Wang, C.-L., Tu, K.-C., Yang, S.-C., Tsai, M.-H., &amp; Yu, S.-S. (2024). Dog identification based on textural features and spatial relation of noseprint. Pattern Recognition, 151, Article 110353. <a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.patcog.2024.110353"><u>https://doi.org/10.1016/j.patcog.2024.110353</u></a></li><li>Choi, H. I., Kim, M.-Y., Yoon, H.-Y., Lee, S., Choi, S. S., Han, C. Y., Moon, H. P., Byun, C., &amp; Kwon, S.-H. (2021). Study on the viability of canine nose pattern as a unique biometric marker. Animals, 11(12), Article 3372. <a target="_blank" rel="noopener" href="https://doi.org/10.3390/ani11123372"><u>https://doi.org/10.3390/ani11123372</u></a></li><li>Jang, D.-H., Kwon, K.-S., Kim, J.-K., Yang, K.-Y., &amp; Kim, J.-B. (2020). Dog identification method based on muzzle pattern image. Applied Sciences, 10(24), Article 8994. <a target="_blank" rel="noopener" href="https://doi.org/10.3390/app10248994"><u>https://doi.org/10.3390/app10248994</u></a></li><li>LeCun, Y., Bengio, Y., &amp; Hinton, G. (2015). Deep learning. Nature, 521, 436–444. <a target="_blank" rel="noopener" href="https://doi.org/10.1038/nature14539"><u>https://doi.org/10.1038/nature14539</u></a></li><li>Shinoda, R., &amp; Shiohara, K. (2024). PetFace: A large-scale dataset and benchmark for animal identification. En Computer Vision – ECCV 2024 (pp. 19–36). Springer. <a target="_blank" rel="noopener" href="https://doi.org/10.1007/978-3-031-72649-1_2"><u>https://doi.org/10.1007/978-3-031-72649-1_2</u></a></li></ul><h4 class="bib-t">Adopción de mascotas</h4><ul class="ia-bib"><li>Powell, L., Reinhard, C., Satriale, D., Morris, M., Serpell, J., &amp; Watson, B. (2021). Characterizing unsuccessful animal adoptions: Age and breed predict the likelihood of return, reasons for return and post-return outcomes. Scientific Reports, 11, Article 8018. <a target="_blank" rel="noopener" href="https://doi.org/10.1038/s41598-021-87649-2"><u>https://doi.org/10.1038/s41598-021-87649-2</u></a></li><li>Reese, L. A. (2021). Make me a match: Prevalence and outcomes associated with matching programs in dog adoptions. Journal of Applied Animal Welfare Science, 24(1), 16–28. <a target="_blank" rel="noopener" href="https://doi.org/10.1080/10888705.2020.1867985"><u>https://doi.org/10.1080/10888705.2020.1867985</u></a></li></ul><h4 class="bib-t">Mapas, SIG y gestión de riesgos de la IA</h4><ul class="ia-bib"><li>Leaflet. (s. f.). Documentation: Leaflet, an open-source JavaScript library for mobile-friendly interactive maps. <a target="_blank" rel="noopener" href="https://leafletjs.com/reference"><u>https://leafletjs.com/reference</u></a></li><li>Longley, P. A., Goodchild, M. F., Maguire, D. J., &amp; Rhind, D. W. (2015). Geographic information science and systems (4.ª ed.). Wiley.</li><li>Tabassi, E. (2023). Artificial intelligence risk management framework (AI RMF 1.0) (NIST AI 100-1). National Institute of Standards and Technology. <a target="_blank" rel="noopener" href="https://doi.org/10.6028/NIST.AI.100-1"><u>https://doi.org/10.6028/NIST.AI.100-1</u></a></li></ul></div></details>
+ </div>
+</section>
+</main>
+<div class="foot">Correo Electrónico: HuellitasNic@gmail.com</div>
+<div class="mo" id="mo"><div class="mb" id="mb"></div></div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/datos.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/mascotas.js"></script>
+<script src="js/mapa.js"></script>
+<script src="js/cuentas.js"></script>
+<script src="js/reportes.js"></script>
+<script src="js/ia.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
